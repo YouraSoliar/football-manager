@@ -1,5 +1,6 @@
 package com.codeseek.footballmanager.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,8 +21,11 @@ public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false)
     private String name;
+    @Column(nullable = false)
     private int monthsExperience;
+    @Column(nullable = false)
     private int age;
     @ManyToOne
     @JoinColumn(name = "team_id")

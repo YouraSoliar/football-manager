@@ -1,6 +1,7 @@
 package com.codeseek.footballmanager.model;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,8 +24,11 @@ public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false)
     private String name;
-    private int commission;
+    @Column(nullable = false)
+    private BigDecimal commission;
+    @Column(nullable = false)
     private BigDecimal balance;
     @OneToMany(mappedBy = "team", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Player> players = new ArrayList<>();

@@ -1,15 +1,13 @@
 package com.codeseek.footballmanager.dto;
 
 import jakarta.validation.constraints.NotNull;
-import java.math.BigDecimal;
 
-public class TeamDto {
-    @NotNull
-    private Long id;
+public class CreatePlayerRequestDto {
     @NotNull
     private String name;
     @NotNull
-    private BigDecimal commission;
+    private int monthsExperience;
     @NotNull
-    private BigDecimal balance;
+    private int age;
+    private Long teamId;
 }
