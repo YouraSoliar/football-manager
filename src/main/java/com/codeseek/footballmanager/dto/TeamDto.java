@@ -1,15 +1,16 @@
 package com.codeseek.footballmanager.dto;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 public class TeamDto {
     @NotNull
     private Long id;
-    @NotNull
+    @NotBlank(message = "Name must not be blank")
     private String name;
-    @NotNull
+    @NotNull(message = "Commission is required")
     private BigDecimal commission;
-    @NotNull
+    @NotNull(message = "Balance is required")
     private BigDecimal balance;
 }
