@@ -15,11 +15,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/players")
+@RequestMapping("/api/players")
 public class PlayerController {
     private final PlayerService playerService;
 
@@ -33,6 +34,12 @@ public class PlayerController {
     public ResponseEntity<PlayerDto> getPlayerById(@PathVariable Long id) {
         PlayerDto playerDto = playerService.findPlayerById(id);
         return new ResponseEntity<>(playerDto, HttpStatus.OK);
+    }
+
+    @GetMapping(params = "teamId")
+    public ResponseEntity<List<PlayerDto>> getPlayersByTeamId(@RequestParam Long teamId) {
+        List<PlayerDto> players = playerService.getPlayersByTeamId(teamId);
+        return new ResponseEntity<>(players, HttpStatus.OK);
     }
 
     @PostMapping

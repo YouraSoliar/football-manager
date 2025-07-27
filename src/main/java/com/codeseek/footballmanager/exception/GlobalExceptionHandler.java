@@ -19,4 +19,34 @@ public class GlobalExceptionHandler {
         );
         return errors;
     }
+
+    @ExceptionHandler(EntityNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public Map<String, String> handleEntityNotFound(EntityNotFoundException ex) {
+        return Map.of("error", ex.getMessage());
+    }
+
+    @ExceptionHandler(LackOfMoneyException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Map<String, String> handleLackOfMoney(LackOfMoneyException ex) {
+        return Map.of("error", ex.getMessage());
+    }
+
+    @ExceptionHandler(TransferException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public Map<String, String> handleTransferException(TransferException ex) {
+        return Map.of("error", ex.getMessage());
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Map<String, String> handleIllegalArgument(IllegalArgumentException ex) {
+        return Map.of("error", ex.getMessage());
+    }
+
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public Map<String, String> handleGeneralError(Exception ex) {
+        return Map.of("error", "Internal server error: " + ex.getMessage());
+    }
 }

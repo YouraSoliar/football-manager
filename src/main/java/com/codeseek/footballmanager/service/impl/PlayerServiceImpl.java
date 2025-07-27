@@ -19,8 +19,8 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public PlayerDto save(CreatePlayerRequestDto requestDto) {
-        Player player = playerRepository.save(playerMapper.toModel(requestDto));
-        return playerMapper.toDto(player);
+        Player player = playerMapper.toModel(requestDto);
+        return playerMapper.toDto(playerRepository.save(player));
     }
 
     @Override
@@ -52,5 +52,13 @@ public class PlayerServiceImpl implements PlayerService {
     @Override
     public void deleteById(Long id) {
         playerRepository.deleteById(id);
+    }
+
+    @Override
+    public List<PlayerDto> getPlayersByTeamId(Long teamId) {
+        return playerRepository.findByTeamId(teamId)
+                .stream()
+                .map(playerMapper::toDto)
+                .toList();
     }
 }

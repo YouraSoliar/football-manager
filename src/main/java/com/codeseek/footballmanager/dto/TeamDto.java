@@ -3,7 +3,9 @@ package com.codeseek.footballmanager.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import lombok.Data;
 
+@Data
 public class TeamDto {
     @NotNull
     private Long id;

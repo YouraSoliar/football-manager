@@ -17,7 +17,6 @@ public class TeamServiceImpl implements TeamService {
     private final TeamRepository teamRepository;
     private final TeamMapper teamMapper;
 
-
     @Override
     public TeamDto save(CreateTeamRequestDto requestDto) {
         Team team = teamRepository.save(teamMapper.toModel(requestDto));
